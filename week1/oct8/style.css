@@ -1,0 +1,14 @@
+.container{
+    display: flex;
+    gap: 10px;
+    border: 1px solid black;
+    height: 30px;
+    width: 100%;
+    justify-content:space-around;
+    align-items: center;
+    background-color: lightgreen;
+}
+
+body{
+   background-color: rgb(37, 141, 176);
+}
