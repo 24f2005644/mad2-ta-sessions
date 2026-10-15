@@ -1,4 +1,8 @@
 
+// https://visualizejs.com/javascript/event-loop
+// https://www.visualjs.in/visualizer
+// https://latentflip.com/loupe/
+
 const PI = 3.14159;
 
 export function add(a, b) { return a + b; }
