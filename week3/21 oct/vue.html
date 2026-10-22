@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Guide</title>
+    <!-- CDN loads Vue from an online link. This page uses a CDN. -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+</head>
+<body>
+    <h1>Vue Guide</h1>
+<!-- 
+    CDN and CLI
+    <h2>CDN and CLI</h2>
+    <p>CDN loads Vue from an online link. CLI uses terminal commands to make and run a Vue project.</p>
+    <p>This page uses a CDN, shown by the script link in the head.</p>
+     -->
+
+    <!-- Vue app, el, and data
+    <h2>Vue app, el, and data</h2>
+    <p>Vue connects the page and the JavaScript. el tells Vue which part of the page to use. data holds the values.</p>
+    <p>Syntax: new Vue({ el: "#demo1", data: { message: "Hello" } })</p>
+    <h2>Show a value</h2>
+    <p>Use {{ }} to show a value from data on the page.</p>
+    <p>Syntax: {{ valueName }}</p>
+    <div id="demo1">{{ message }}</div>
+    -->
+
+    <!-- <h2>v-bind</h2>
+    <p>v-bind puts a value from data into an HTML setting.</p>
+    <p>Syntax: v-bind:setting="valueName"</p>
+    <div id="demo2" v-bind:style="val">This text uses a style from Vue.</div>
+    -->
+ 
+    <!-- v-if
+    <h2>v-if</h2>
+    <p>v-if shows something when its value is true. v-else shows something when it is false.</p>
+    <p>Syntax: v-if="condition" and v-else</p>
+    <div id="demo3">
+        <p v-if="show">This is shown.</p>
+        <p v-else>This is hidden.</p>
+    </div>
+     
+
+     v-show
+    <h2>v-show</h2>
+    <p>v-show hides or shows something. It stays on the page while hidden.</p>
+    <p>Difference: v-if adds or removes it. v-show hides or shows it.</p>
+    <p>Syntax: v-show="condition"</p>
+    <div id="demo9">
+        <p v-show="showMessage">This message can be hidden or shown.</p>
+    </div>
+      -->
+
+    <!-- v-for
+    <h2>v-for</h2>
+    <p>v-for makes one row for each item in a list.</p>
+    <p>Syntax: v-for="item in items"</p>
+    <ol id="demo4">
+        <li v-for="item in items">{{ item }}</li>
+    </ol> -->
+   
+
+    <!-- v-model
+    <h2>v-model</h2>
+    <p>v-model links a box to data. Typing in the box changes the value.</p>
+    <p>Syntax: v-model="valueName"</p>
+    <div id="demo5">
+        <input v-model="message">
+        <p>{{ message }}</p>
+    </div>
+    -->
+
+    <!-- Click and methods
+    
+    <h2>Click and methods</h2>
+    <p>@click runs an action when you click. methods holds actions.</p>
+    <p>Syntax: @click="methodName"</p>
+    <div id="demo6">
+        <input v-model="name" placeholder="Enter your name"> <br>
+        <button @click="changeMessage">Change</button>
+        <p>{{ message }}</p>
+    </div>
+    -->
+<!-- 
+    computed
+    <h2>computed</h2>
+    <p>computed makes a new value from other values in data.</p>
+    <p>Syntax: computed: { valueName: function () { return value; } }</p>
+    <div id="demo7">{{ fullName }}</div>
+    -->
+
+    <!-- watch
+    <h2>watch</h2>
+    <p>watch runs when a value changes.</p>
+    <p>Syntax: watch: { valueName: function (newValue) { } }</p>
+    <div id="demo8">
+        <input v-model="message">
+        <p>{{ info }}</p>
+    </div>
+    -->
+
+    <script src="./vue-1.js"></script>
+</body>
+</html>

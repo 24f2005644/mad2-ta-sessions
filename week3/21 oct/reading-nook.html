@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Book Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="reading-nook.css">
+</head>
+<body>
+    <main id="app">
+        <h1>Book Tracker</h1>
+        <input v-model="newBook" placeholder="Book title">
+        <button @click="addBook">Add book</button>
+        <p>{{ notice }}</p>
+
+        <select v-model="filter">
+            <option value="all">All books</option>
+            <option value="reading">To read</option>
+            <option value="finished">Read</option>
+        </select>
+        <p>{{ books.length }} books · {{ finishedCount }} read</p>
+
+        <p v-if="visibleBooks.length === 0">No books to show.</p>
+        <ul v-else>
+            <li v-for="book in visibleBooks">
+                {{ book.title }}
+                <button v-if="!book.finished" @click="finishBook(book)">Mark read</button>
+                <span v-else>Read</span>
+            </li>
+        </ul>
+    </main>
+    <script src="reading-nook.js"></script>
+</body>
+</html>
+
