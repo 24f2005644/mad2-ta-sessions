@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{ status }}</h2>
+
+        <div class="board">
+            <button v-for="(cell, index) in cells" :key="index" @click="play(index)">
+                {{ cell || '-' }}
+            </button>
+        </div>
+        <button @click="resetGame">Reset</button>
+    </div>
+
+    <script>
+        new Vue({
+          el: '#app',
+          data:{
+            cells: Array(9).fill(""),
+            currentPlayer: 'X',
+            gameOver: false,
+          },
+
+        computed:
+        {
+            status(){
+                if(this.gameOver){
+                    if(this.checkWinner()){
+                        return `Player ${this.currentPlayer} wins!`;
+                    }
+                    return "It's a draw!";
+
+                }
+                return `Player ${this.currentPlayer}'s turn`;
+            }
+        },
+
+        methods:{
+            play(index){
+            if(this.cells[index]|| this.gameOver) return;
+
+            this.$set(this.cells, index, this.currentPlayer);
+
+            if(this.checkWinner()){
+                this.gameOver = true;
+            } else if(this.cells.every(cell => cell)) {
+                this.gameOver = true;
+            } else {
+                this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
+
+            }
+            },
+
+            checkWinner() {
+            const wins = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6]
+            ];
+
+            for (const condition of wins) {
+                const [a, b, c] = condition;
+                if (this.cells[a] && this.cells[a] === this.cells[b] && this.cells[a] === this.cells[c]) {
+                    return true;
+                }
+            }
+            return false;
+        },
+        resetGame() {
+            this.cells = Array(9).fill("");
+            this.currentPlayer = 'X';
+            this.gameOver = false;
+        }
+
+
+        }
+
+        })
+    </script>
+
+    <style>
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 100px;
+            height: 100px;
+            font-size: 24px;
+        }
+    </style>
+
+</body>
+</html>
