@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue Practice</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="vue-concepts.js" defer></script>
+    <style>
+        body { max-width: 650px; margin: 35px auto; padding: 0 16px; background: #f4f6f1; color: #304337; font-family: Arial, sans-serif; }
+        .topic { margin: 22px 0 8px; }
+        .card { padding: 14px; border-radius: 9px; background: white; }
+        input, button { margin: 4px; padding: 8px; border: 1px solid #d5dfd5; border-radius: 6px; }
+        button { background: #52745a; color: white; cursor: pointer; }
+        img { display: block; margin-top: 8px; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <main id="app">
+        <h1>Vue Study Nook</h1>
+        <div class="card"><p>{{ message }}</p></div>
+
+        <div class="card"><img v-bind:src="imageUrl" width="200" alt="Books in a library"></div>
+
+        <div class="card">
+            <input v-model="name" placeholder="Your name">
+            <p>Hello {{ name || 'student' }}</p>
+        </div>
+
+        <!-- <div class="card">
+            <button @click="showTip = !showTip">Toggle study tip</button>
+            <p v-show="showTip">Keep learning one step at a time.</p>
+            <p v-if="showTip">Welcome to your study nook.</p>
+        </div>
+
+        <div class="card"><ul><li v-for="fruit in fruits">{{ fruit }}</li></ul></div> -->
+
+        <div class="card">
+            <input v-model="days" type="number" min="1">
+            <p>Double the days: {{ doubleDays }}</p>
+        </div>
+
+        <!-- <div class="card">
+            <input v-model="typedMessage" placeholder="Type a message">
+            <p>{{ status }}</p>
+        </div> -->
+
+        <!-- <div class="card">
+            <p>Without Vue: <span id="plainCount"></span></p>
+            <button onclick="startPlainTimer()">Start plain timer</button>
+            <p>With Vue: <span>{{ count }}</span></p>
+            <button @click="startVueTimer">Start Vue timer</button>
+        </div> -->
+    </main>
+</body>
+</html>
