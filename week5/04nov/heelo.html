@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Lifecycle Hooks</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <h1>{{ message }}</h1>
+    <p>Uppercase: {{ upperMessage }}</p>
+    <p>Count: {{ count }}</p>
+
+    <button @click="changeMessage">Change Message</button>
+    <button @click="increaseCount">Increase Count</button>
+    <button @click="destroyApp">Destroy App</button>
+</div>
+
+<script>
+new Vue({
+    el: "#app",
+
+    data() {
+
+        return {
+            message: "Hello",
+            count: 0
+        };
+    },
+
+    computed: {
+        upperMessage() {
+            
+            return this.message.toUpperCase();
+        }
+    },
+
+    methods: {
+        showMessage() {
+            console.log("method runs when called");
+            console.log(this.message);
+        },
+
+        changeMessage() {
+            this.message = "Vue is useful";
+        },
+
+        increaseCount() {
+            this.count++;
+        },
+
+        destroyApp() {
+            this.$destroy();
+        }
+    },
+
+    // beforeCreate() {
+    //     console.log("beforeCreate");
+    //     console.log("data:", this.message !== undefined ? "Yes" : "No", this.message);
+    //     console.log("el:", this.$el !== undefined ? "Yes" : "No", this.$el);
+    //     console.log("computed:", this.upperMessage !== undefined ? "Yes" : "No", this.upperMessage);
+    //     console.log("method:", this.showMessage !== undefined ? "Yes" : "No", this.showMessage);
+    // }
+
+    // created() {
+    //     console.log("created");
+    //     console.log("data:", this.message !== undefined ? "Yes" : "No", this.message);
+    //     console.log("el:", this.$el !== undefined ? "Yes" : "No", this.$el);
+    //     console.log("computed:", this.upperMessage !== undefined ? "Yes" : "No", this.upperMessage);
+    //     console.log("method:", this.showMessage !== undefined ? "Yes" : "No", this.showMessage);
+    //     this.showMessage();
+    //  },
+
+    // beforeMount() {
+    //     console.log("beforeMount");
+    //     console.log("data:", this.message !== undefined ? "Yes" : "No", this.message);
+    //     console.log("el:", this.$el !== undefined ? "Yes" : "No", this.$el);
+    //     console.log("computed:", this.upperMessage !== undefined ? "Yes" : "No", this.upperMessage);
+    //     console.log("method:", this.showMessage !== undefined ? "Yes" : "No", this.showMessage);
+    // },
+
+    // mounted() {
+    //     console.log("data:", this.message !== undefined ? "Yes" : "No", this.message);
+    //     console.log("el:", this.$el !== undefined ? "Yes" : "No", this.$el);
+    //     console.log("computed:", this.upperMessage !== undefined ? "Yes" : "No",    this.upperMessage);
+    //     console.log("method:", this.showMessage !== undefined ? "Yes" : "No", this.showMessage);        
+    //     console.log("mounted");
+    // },
+
+    // beforeUpdate() {
+    //     console.log("beforeUpdate");
+    // },
+    // beforeUpdate() {
+    //     console.log("beforeUpdate");
+    // },
+
+    // updated() {
+    //     console.log("updated");
+    // },
+
+    // beforeDestroy() {
+    //     console.log("beforeDestroy");
+    // },
+
+    // destroyed() {
+    //     console.log("destroyed");
+    // }
+  
+  
+});
+</script>
+
+</body>
+</html>

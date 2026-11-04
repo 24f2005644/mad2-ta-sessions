@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Lifecycle Code Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .question {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 18px 0;
+            padding: 15px;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 12px;
+            overflow-x: auto;
+        }
+
+        button {
+            padding: 8px 12px;
+        }
+
+        .answer {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Vue Lifecycle Code Quiz</h1>
+<p>Read the code and predict the output before showing the answer.</p>
+
+<div class="question">
+    <h3>1. What is the correct console order?</h3>
+    <pre>data() {
+    console.log("data");
+    return { message: "Hi" };
+},
+beforeCreate() { console.log("beforeCreate"); },
+created() { console.log("created"); },
+mounted() { console.log("mounted"); }</pre>
+    <button onclick="showAnswer('answer1')">Show Answer</button>
+    <p id="answer1" class="answer" hidden>
+        beforeCreate → data → created → mounted
+    </p>
+</div>
+
+<div class="question">
+    <h3>2. Predict both values in `beforeCreate()`.</h3>
+    <pre>data() {
+    return { message: "Hello" };
+},
+beforeCreate() {
+    console.log(this.message);
+    console.log(this.showMessage);
+}</pre>
+    <button onclick="showAnswer('answer2')">Show Answer</button>
+    <p id="answer2" class="answer" hidden>
+        Both are undefined because data and methods are not ready in
+        beforeCreate().
+    </p>
+</div>
+
+<div class="question">
+    <h3>3. Which values are available in `created()`?</h3>
+    <pre>data() {
+    return { message: "Hello" };
+},
+computed: {
+    upperMessage() {
+        return this.message.toUpperCase();
+    }
+},
+created() {
+    console.log(this.message);
+    console.log(this.upperMessage);
+    console.log(this.$el);
+}</pre>
+    <button onclick="showAnswer('answer3')">Show Answer</button>
+    <p id="answer3" class="answer" hidden>
+        message = "Hello", upperMessage = "HELLO", and $el is not the
+        mounted DOM yet.
+    </p>
+</div>
+
+<div class="question">
+    <h3>4. How many times does the computed property run?</h3>
+    <pre>computed: {
+    upperMessage() {
+        console.log("computed");
+        return this.message.toUpperCase();
+    }
+},
+mounted() {
+    console.log(this.upperMessage);
+    console.log(this.upperMessage);
+}</pre>
+    <button onclick="showAnswer('answer4')">Show Answer</button>
+    <p id="answer4" class="answer" hidden>
+        Once. Vue caches a computed value until its dependency changes.
+    </p>
+</div>
+
+<div class="question">
+    <h3>5. What is the output after clicking the button once?</h3>
+    <pre>data() {
+    return { count: 0 };
+},
+methods: {
+    add() {
+        this.count++;
+    }
+},
+beforeUpdate() { console.log("beforeUpdate"); },
+updated() { console.log("updated"); }</pre>
+    <button onclick="showAnswer('answer5')">Show Answer</button>
+    <p id="answer5" class="answer" hidden>
+        count changes from 0 to 1, then beforeUpdate runs, followed by updated.
+    </p>
+</div>
+
+<div class="question">
+    <h3>6. What is logged by this method call?</h3>
+    <pre>data() {
+    return { message: "Hello" };
+},
+methods: {
+    showMessage() {
+        console.log(this.message);
+    }
+},
+created() {
+    this.showMessage();
+}</pre>
+    <button onclick="showAnswer('answer6')">Show Answer</button>
+    <p id="answer6" class="answer" hidden>
+        Hello. Methods and data are available in created().
+    </p>
+</div>
+
+<div class="question">
+    <h3>7. Which line works, and which line does not?</h3>
+    <pre>created() {
+    console.log(this.$el.innerHTML);
+},
+mounted() {
+    console.log(this.$el.innerHTML);
+}</pre>
+    <button onclick="showAnswer('answer7')">Show Answer</button>
+    <p id="answer7" class="answer" hidden>
+        The mounted() line works because the DOM is ready. The created()
+        line cannot safely read the mounted DOM.
+    </p>
+</div>
+
+<div class="question">
+    <h3>8. What is the lifecycle order after clicking `destroyApp()`?</h3>
+    <pre>methods: {
+    destroyApp() {
+        this.$destroy();
+    }
+},
+beforeDestroy() { console.log("before"); },
+destroyed() { console.log("after"); }</pre>
+    <button onclick="showAnswer('answer8')">Show Answer</button>
+    <p id="answer8" class="answer" hidden>
+        beforeDestroy() runs first, then destroyed().
+    </p>
+</div>
+
+<script>
+    function showAnswer(id) {
+        document.getElementById(id).hidden = false;
+    }
+</script>
+
+</body>
+</html>
