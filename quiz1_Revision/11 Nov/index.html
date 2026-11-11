@@ -1,0 +1,370 @@
+<!-- #v-cloak is done to hide the element until the Vue instance is fully loaded and ready. This prevents the user from seeing the raw template 
+syntax (like {{ message }}) before Vue has a chance to render it. In this example, the paragraph with v-cloak will be hidden until the Vue instance is created after a 5-second delay, at which point it will display "Hello Vue!". -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Let's practice</h1>
+    <!-- 1 -->
+    <!-- <div id="app">
+        <h1>Hello, World!</h1> 
+        <h2>This is a V-cloak example.</h2>
+        
+            <p v-cloak>{{ message }}</p>
+    </div> -->
+   
+
+
+
+    <!-- 2 -->
+    <div id="app">
+        <p v-for="n in numbers" :key="n">
+            {{ n }}
+        </p>
+    </div>
+
+
+
+
+    <!-- 5 -->
+
+<!-- <div id="app">
+
+    <p>{{ message }}</p>
+
+    
+    <input v-model="message" />
+
+    
+    <child-component :title="message">
+
+       
+        <template slot="header">
+            <h3>{{ message.toUpperCase() }}</h3>
+        </template>
+
+    </child-component>
+
+</div>  -->
+
+
+
+<!-- 7 -->
+
+
+<!-- <div id="app">
+  <my-comp>
+    <h3>Exploring vue Js</h3>
+
+    <slot v-slot:last>  
+        #here you should use template not slot slot use in my-comp component and template use in parent component
+      <h3>Learning App Dev 2</h3>
+    </slot>
+  </my-comp>
+</div> -->
+
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+    // // 1.
+    // setTimeout(function() {
+    //     new Vue({
+    //     el: '#app',
+    //     data: {
+    //         message: 'Hello Vue!'
+    //     }
+    // });
+    // }, 5000);
+
+
+
+// 2.
+
+
+var app = new Vue({
+    el: "#app",
+
+    data: {
+        numbers: [1, 2, 3]
+    }
+});
+
+// Add 4 to the array
+// app.data.numbers.push(4);
+app.numbers.push(4);
+
+
+
+
+// 3
+
+
+
+
+// class Region {
+// constructor(region) {
+// this.region = region;
+// }
+// describe() {
+// return "${this.region} is a region"
+
+// }}
+
+// class Country extends Region {
+// constructor(region, name) {
+// super(region);
+// this.name = name;
+// }
+// describe() {
+// return "${this.name} is in ${this.region} .";
+
+// }
+// }
+// let r = new Region("Asia");
+// let c = new Country("Europe", "Germany");
+// let f= c.describe;
+// console.log(typeof f); // "function"
+// console.log(f()); // "undefined is in undefined ."
+
+// 4
+
+
+// || --> repalce all falsy values with the right hand side value 
+// let multiply = (a, b, c) => {
+//     a = a || 1;
+//     b = b || 1;
+//     c = c || 1;
+
+//     return a * b * c;
+// };
+// **It works for undefined, but it also replaces 0, false, and "" with 1.
+
+// function multiply(a = 1, b = 1, c = 1) {
+//     return a * b * c;
+// }
+// **This is correct because JavaScript automatically assigns 1 when a parameter is undefined.
+
+
+
+
+// console.log(multiply(2, 3, 4)); // 24
+// console.log(multiply(2, 3));    // 6
+// console.log(multiply());       // 1
+
+
+
+
+// ?? replace all the null or undefined value with right hand side value.
+
+// let multiply = (a, b, c) => {
+//     return (a ?? 1) * (b ?? 1) * (c ?? 1);
+// };
+
+// console.log(multiply(2, 3, 4)); // 24
+// console.log(multiply(2, 3));    // 6
+// console.log(multiply());       // 1
+
+
+
+
+
+// const multiply = function(a, b, c) {
+//     if (a === undefined) a = 1;
+//     if (b === undefined) b = 1;
+//     if (c === undefined) c = 1;
+
+//     return a * b * c;
+// };
+
+// console.log(multiply(2, 3, 4)); // 24
+// console.log(multiply(2, 3));    // 6
+// console.log(multiply());       // 1
+
+
+
+// 5
+
+// Vue.component('child-component', {
+
+//     // Receive data from parent
+//     props: ['title'],
+
+//     // Child component template
+//     template: `
+//         <div>
+//             <h2>{{ title }}</h2>
+
+//             <slot name="header"></slot>
+
+//             <p>Child Content</p>
+//         </div>
+//     `
+// });
+
+// // Create Vue instance
+// new Vue({
+
+//     el: '#app',
+
+//     data: {
+//         message: 'Hello Vue'
+//     }
+
+// });
+
+
+// 6
+
+// // function inside the function take this from global scope
+// // arrow function inside the function take this from the function scope
+// // only arrowfunction take this from global var not have there own this 
+// // whenever inside obj inside funct of obj the global var which i svar name called then it will value from global var not from obj var because  for accesss obj globalvar var we  have to call this.globalvar 
+
+
+
+// const globalVar = 50;
+
+// const object1 = {
+//     globalVar: 100,
+
+//     method1: function() {
+//         console.log(globalVar, this.globalVar);
+
+//         return () => {
+//             console.log(globalVar, this.globalVar);
+//         };
+//     }
+// };
+
+// const object2 = {
+//     globalVar: 200,
+
+//     method2: () => {
+//         console.log(globalVar, this.globalVar);
+
+//         return function() {
+//             console.log(globalVar, this.globalVar);
+//         };
+//     }
+// };
+
+// const fn1 = object1.method1();
+// fn1();
+
+// const fn2 = object2.method2();
+// fn2();
+
+
+// 7
+
+
+
+// function outer() {
+//     let count = 0;
+
+//     return function inner() {
+//         return count++;
+//     };
+// }
+//  count is first log then inc in this case.
+// // Create two independent closures
+// const c1 = outer();
+// const c2 = outer();
+
+// // Execute functions
+// console.log(c1()); // 0
+// console.log(c2()); // 0
+// console.log(c1()); // 1
+// console.log(c2()); // 1
+
+
+// 7
+
+
+// const MyComp = {
+//   name: 'my-comp',
+//   props: ['tech'],
+//   template:
+//   `<div class="container">
+//     <slot name="complete">
+//       <h3>Learned DBMS</h3>
+//     </slot>
+
+//     <slot>
+//       Exploring Frontend
+//     </slot>
+
+//     <slot name="last"></slot>
+//   </div>`
+// };
+
+// const app = new Vue({
+//   el: '#app',
+//   components: {
+//     MyComp
+//   }
+// });
+
+
+// 8
+
+
+
+
+// function createCounter(start) {
+//     let count = start;
+
+//     return function (step) {
+
+//         if (typeof step === "number") {
+//             count += step;
+//             return count;
+//         }
+
+//         return (function () {
+//             let temp = count; --5
+
+//             return function (reset = false) {
+
+//                 if (reset) {
+//                     count = start;
+//                 } else {
+//                     count++;
+//                 }
+
+//                 return temp + count;
+//             };
+
+//         })();
+//     };
+// }
+
+
+
+// const counter1 = createCounter(3); count = 3
+
+// let a = counter1(2);       // count = 5
+// let b = counter1()(true);  // 8
+
+// console.log(a + b); //13
+
+// here same function is called with different arguments, so it will return different values. The first call increments the count by 2, while the second call resets the count to 3 and returns the sum of the previous count (5) and the new count (3), resulting in 8.
+
+
+
+
+</script>
+<!-- <style>
+    [v-cloak] {
+        display: none;
+    }
+</style> -->
+</html>
