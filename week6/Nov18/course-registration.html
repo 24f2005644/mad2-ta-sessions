@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Enrollment Form</title>
+</head>
+<body>
+  <div id="app">
+    <h1>Course Enrollment</h1>
+
+    <!-- 
+    @submit.prevent="submitForm" is Vue shorthand for listening to the form’s submit event and calling event.preventDefault() before running submitForm.
+
+    That stops the browser’s normal form submission, which would reload or navigate away from the page. Vue then runs your method in the current page:
+    1. submitForm() validates the name and password.
+    2. If both are valid, it navigates with this.$router.push(...).
+    3. It clears the form fields.
+    
+    -->
+    <form @submit.prevent="submitForm">
+      <p>
+        <label for="course-title">Course title:</label><br>
+        <input id="course-title" type="text" v-model.trim="courseTitle"
+              @blur="validateCourseTitle" placeholder="Enter course title">
+              <!-- @blur="validateName" - Validates when user leaves field -->
+        <span v-if="courseTitleError" style="color: red;">{{ courseTitleError }}</span>
+      </p>
+
+      <p>
+        <label for="course-code">Course code:</label><br>
+        <input id="course-code" type="text" v-model.trim="courseCode"
+              @blur="validateCourseCode" placeholder="Enter course code (e.g. CS101)">
+        <span v-if="courseCodeError" style="color: red;">{{ courseCodeError }}</span>
+      </p>
+
+      <button type="submit">Enroll in course</button>
+    </form>
+
+    <p v-if="submitted" style="color: green;">
+      Enrollment successful: {{ courseTitle }} ({{ courseCode }}).
+    </p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="course-registration.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+    <p>Items in cart: {{ itemCount }}</p>
+    <p>Cart message: {{ cartMessage }}</p>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+<script>
+    let app = new Vue({
+el: "#app",
+
+data: {
+items: ["Laptop", "Mouse"],
+Message: "Cart is empty"
+
+},
+
+computed: {
+itemCount() {
+return this.items.length;
+},
+cartMessage() {
+return this.items.length === 0
+? "Cart is empty"
+: "Items are available";}
+}
+});
+
+setTimeout(()=>{
+app.items.push("Keyboard");
+},1000);
+</script>
+
+</html> 
+<!-- let app = new Vue({
+el: "#app",
+
+data: {
+items: ["Laptop", "Mouse"],
+cartMessage: "Cart is empty"
+
+},
+
+computed: {
+itemCount() {
+return this.items.length;
+},
+cartMessage() {
+return this.items.length === 0
+? "Cart is empty"
+: "Items are available";}
+}
+});
+
+setTimeout(()=>{
+app.items.push("Keyboard");
+},1000);
+</script>
+</html> -->
