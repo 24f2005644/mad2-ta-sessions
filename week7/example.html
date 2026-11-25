@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+  <nav>
+    <router-link to="/home">Home</router-link> |
+    <router-link to="/user/1">User 1</router-link> |
+    <router-link to="/users/dashboard">Dashboard</router-link>
+  </nav>
+  <router-view></router-view>
+</div>
+
+<script>
+const home = { template: "<h1>Home Page</h1>" }
+
+const userProfile = {
+  template: `<div><h2>User: {{ $route.params.userId }}</h2></div>`
+}
+
+const users = {
+  template: `<div><h2>Users Section</h2> <router-view></router-view> </div>`
+}
+const dashboard  = { template: "<div>Dashboard content here</div>" }
+const activities = { template: "<div>Activities content here</div>" }
+
+const routes = [
+  { path: "/home", component: home },
+  { path: "/user/:userId", name: "userProfile", component: userProfile },
+  {
+    path: "/users",
+    component: users,
+    children: [
+      { path: "dashboard",  component: dashboard  },
+      { path: "activities", component: activities }
+    ]
+  }
+]
+
+const router = new VueRouter({ routes })
+
+const app = new Vue({
+  el: "#app",
+  router,
+  methods: {
+    goToUser(id) {
+      this.$router.push({ name: "userProfile", params: { userId: id } })
+    }
+  }
+})
+</script>
+</body>
+</html>
